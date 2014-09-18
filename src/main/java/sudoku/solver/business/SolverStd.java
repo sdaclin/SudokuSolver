@@ -86,11 +86,6 @@ public class SolverStd implements Solver {
   }
 
   @Override
-  public boolean checkSector(Grid grid, short id) {
-    return false;
-  }
-
-  @Override
   public Grid solve(Grid grid) {
     return null;
   }
