@@ -11,7 +11,7 @@ import java.util.Set;
 public class SolverStd implements Solver {
   @Override
   public Grid setCell(Grid grid, short x, short y, short val) {
-    if (!(grid.getContent()[x][y] == 0)) {
+    if (!(grid.getContent()[y][x] == 0)) {
       throw new IllegalArgumentException("Can't set a cell that is already filled");
     }
     Grid newGrid = grid.clone();
@@ -85,12 +85,9 @@ public class SolverStd implements Solver {
     return true;
   }
 
-  public boolean getPossibilities(Grid grille) {
-    return true;
-  }
-
-  public boolean getBestPossibilities(Grid grille) {
-    return true;
+  @Override
+  public boolean checkSector(Grid grid, short id) {
+    return false;
   }
 
   @Override

@@ -61,11 +61,13 @@ public class SolverTest {
   @Test
   public void testSolve() {
     Grid result = solver.solve(alEscaargot);
-    for (short i=0; i<9;i++){
-      assertTrue(solver.checkCol(result, i));
-      assertTrue(solver.checkLine(result, i));
-      for (short j=0; j<9; j++) {
-        assertTrue(solver.checkSector(result, i, j));
+    for (short x=0; x<9;x++){
+      assertTrue(solver.checkCol(result, x));
+      assertTrue(solver.checkLine(result, x));
+      for (short y=0; y<9; y++) {
+        assertFalse(result.getVal(x,y) == 0);
+        assertTrue(solver.checkSector(result, x, y));
+
       }
     }
     System.out.println(result);
