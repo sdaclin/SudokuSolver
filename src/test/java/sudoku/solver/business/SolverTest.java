@@ -18,7 +18,7 @@ public class SolverTest {
       new short[]{0, 4, 0, 0, 0, 0, 0, 0, 7},
       new short[]{0, 0, 7, 0, 0, 0, 3, 0, 0});
 
-  public Solver solver = new SolverStd();
+  public Solver solver = new SolverBrutForce();
 
   @Test
   public void testGridConstructor() {
@@ -56,17 +56,26 @@ public class SolverTest {
     assertTrue(solver.checkSector(gridOK, (short) 0, (short) 0));
     Grid gridKO = solver.setCell(alEscaargot, (short) 1, (short) 0, (short) 9);
     assertFalse(solver.checkSector(gridKO, (short) 0, (short) 0));
+
+    Grid gridTest;
+    gridTest = solver.setCell(alEscaargot, (short) 1, (short) 6, (short) 5);
+    gridTest = solver.setCell(gridTest, (short) 2, (short) 6, (short) 8);
+    gridTest = solver.setCell(gridTest, (short) 0, (short) 7, (short) 9);
+    gridTest = solver.setCell(gridTest, (short) 2, (short) 7, (short) 1);
+    gridTest = solver.setCell(gridTest, (short) 0, (short) 8, (short) 8);
+    gridTest = solver.setCell(gridTest, (short) 1, (short) 8, (short) 9);
+    assertFalse(solver.checkSector(gridTest, (short) 0, (short) 6));
   }
 
   @Test
   public void testSolve() {
     Grid result = solver.solve(alEscaargot);
-    for (short x=0; x<9;x++){
-      assertTrue(solver.checkCol(result, x));
-      assertTrue(solver.checkLine(result, x));
-      for (short y=0; y<9; y++) {
-        assertFalse(result.getVal(x,y) == 0);
-        assertTrue(solver.checkSector(result, x, y));
+    for (short i=0; i<9;i++){
+      assertTrue(solver.checkCol(result, i));
+      assertTrue(solver.checkLine(result, i));
+      for (short j=0; j<9; j++) {
+        assertFalse(result.getVal(i,j) == 0);
+        assertTrue(solver.checkSector(result, i, j));
 
       }
     }
