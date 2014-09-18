@@ -12,7 +12,7 @@ public interface Solver {
 
   boolean checkLine(Grid grid, short y);
 
-  boolean checkSector(Grid grid, short id);
+  boolean checkSector(Grid grid, short x, short y);
 
   Grid solve(Grid grid);
 }

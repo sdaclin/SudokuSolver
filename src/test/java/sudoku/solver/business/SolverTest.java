@@ -17,7 +17,7 @@ public class SolverTest {
       new short[]{0, 4, 0, 0, 0, 0, 0, 0, 7},
       new short[]{0, 0, 7, 0, 0, 0, 3, 0, 0});
 
-  public Solver solver = new SolverStd();
+  public Solver solver = new SolverBrutForce();
 
   @Test
   public void testGridConstructor() {
@@ -52,9 +52,9 @@ public class SolverTest {
   @Test
   public void testCheckSector() {
     Grid gridOK = solver.setCell(alEscaargot, (short) 1, (short) 0, (short) 2);
-    assertTrue(solver.checkSector(gridOK, (short) 0));
+    assertTrue(solver.checkSector(gridOK, (short) 0, (short) 0));
     Grid gridKO = solver.setCell(alEscaargot, (short) 1, (short) 0, (short) 9);
-    assertFalse(solver.checkCol(gridKO, (short) 0));
+    assertFalse(solver.checkSector(gridKO, (short) 0, (short) 0));
   }
 
   @Test
@@ -63,7 +63,9 @@ public class SolverTest {
     for (short i=0; i<9;i++){
       assertTrue(solver.checkCol(result, i));
       assertTrue(solver.checkLine(result, i));
-      assertTrue(solver.checkSector(result, i));
+      for (short j=0; j<9; j++) {
+        assertTrue(solver.checkSector(result, i, j));
+      }
     }
     System.out.println(result);
   }
