@@ -54,38 +54,38 @@ public class SolverBrutForce implements Solver {
   @Override
   public boolean checkSector(Grid grid, short x, short y) {
 
-    for (int i = (x / 3); i < 3; i++) {
-      for (int j = (y / 3); j < 3; j++) {
+    for (int i = (x / 3) * 3; i < ((x / 3) + 1) * 3; i++) {
+      for (int j = (y / 3) * 3; j < ((y / 3) + 1) * 3; j++) {
         // No need to test empty cell
         if (grid.getVal((short) i, (short) j) == 0) {
           continue;
         }
         TestVals:
-        for (int k = (y / 3); (y / 3) + k < 3; k++) {
-          for (int l = (y / 3); (y / 3) + l < 3; l++) {
-            if (i == k && j == l) {
-              continue TestVals;
-            }
-            if (grid.getVal((short) i, (short) j) == grid.getVal((short) k, (short) l)) {
-              return false;
-            }
-          }
-        }
+        for (int k = (x / 3) * 3; k < ((x / 3) + 1) * 3; k++) {
+          for (int l = (y / 3) * 3 ; l < ((y / 3) + 1) * 3; l++) {
+      if (i == k && j == l) {
+        continue TestVals;
+      }
+      if (grid.getVal((short) i, (short) j) == grid.getVal((short) k, (short) l)) {
+        return false;
       }
     }
-    return true;
-  }
-
-  @Override
-  public Grid solve(Grid grid) {
-    try {
-      return solveRecursive(grid, 0);
-    } catch (IllegalGridException ige) {
-      return grid;
     }
   }
+}
+return true;
+    }
 
-  public Grid solveRecursive(Grid grid, int idx) throws IllegalGridException {
+@Override
+public Grid solve(Grid grid) {
+    try {
+    return solveRecursive(grid, 0);
+    } catch (IllegalGridException ige) {
+    return grid;
+    }
+    }
+
+public Grid solveRecursive(Grid grid, int idx) throws IllegalGridException {
     //System.out.println(grid);
     if (idx == 81) {
       return grid;
