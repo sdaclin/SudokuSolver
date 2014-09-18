@@ -4,6 +4,7 @@ import org.junit.Test;
 import sudoku.solver.model.Grid;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class SolverTest {
   public static final Grid alEscaargot = new Grid(
@@ -17,7 +18,7 @@ public class SolverTest {
       new short[]{0, 4, 0, 0, 0, 0, 0, 0, 7},
       new short[]{0, 0, 7, 0, 0, 0, 3, 0, 0});
 
-  public Solver solver = new SolverBrutForce();
+  public Solver solver = new SolverStd();
 
   @Test
   public void testGridConstructor() {
@@ -36,9 +37,9 @@ public class SolverTest {
   @Test
   public void testCheckCol() {
     Grid gridOK = solver.setCell(alEscaargot, (short) 0, (short) 1, (short) 2);
-    assertTrue(solver.checkCol(gridOK, (short) 0));
+    assertTrue("Check Colonne OK",solver.checkCol(gridOK, (short) 0));
     Grid gridKO = solver.setCell(alEscaargot, (short) 0, (short) 1, (short) 1);
-    assertFalse(solver.checkCol(gridKO, (short) 0));
+    assertFalse("Check Colonne NOK",solver.checkCol(gridKO, (short) 0));
   }
 
   @Test
@@ -69,4 +70,6 @@ public class SolverTest {
     }
     System.out.println(result);
   }
+
+
 }
