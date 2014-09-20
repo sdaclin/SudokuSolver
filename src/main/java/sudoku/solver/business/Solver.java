@@ -6,13 +6,13 @@ import sudoku.solver.model.Grid;
  * Created by Sylvain on 18/09/2014.
  */
 public interface Solver {
-  Grid setCell(Grid grid, short x, short y, short val);
+  Grid setCell(Grid grid, int x, int y, int val);
 
-  boolean checkCol(Grid grid, short x);
+  boolean checkCol(Grid grid, int x);
 
-  boolean checkLine(Grid grid, short y);
+  boolean checkLine(Grid grid, int y);
 
-  boolean checkSector(Grid grid, short x, short y);
+  boolean checkSector(Grid grid, int x, int y);
 
   Grid solve(Grid grid);
 }

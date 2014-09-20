@@ -12,9 +12,9 @@ public class SolverAdrien implements Solver {
   private class Probabilites implements Comparable{
     public int x;
     public int y;
-    public Set<Short> values;
+    public Set<Integer> values;
 
-    public Probabilites(short x , short y, Set<Short> values){
+    public Probabilites(int x , int y, Set<Integer> values){
       this.x = x;
       this.y = y;
       this.values = values;
@@ -37,7 +37,7 @@ public class SolverAdrien implements Solver {
   }
 
   @Override
-  public Grid setCell(Grid grid, short x, short y, short val) {
+  public Grid setCell(Grid grid, int x, int y, int val) {
     if (!(grid.getContent()[y][x] == 0)) {
       throw new IllegalArgumentException("Can't set a cell that is already filled");
     }
@@ -47,15 +47,15 @@ public class SolverAdrien implements Solver {
   }
 
   @Override
-  public boolean checkCol(Grid grille, short Y) {
+  public boolean checkCol(Grid grille, int Y) {
     // Get grille contents
-    short[][] content = grille.getContent();
+    int[][] content = grille.getContent();
 
     // New temp list
-    Set<Short> tempNum = new HashSet<Short>();
+    Set<Integer> tempNum = new HashSet<Integer>();
 
     // Loop on Col ( 0 => 8)
-    for (short x = 0; x < 9; x++) {
+    for (int x = 0; x < 9; x++) {
       // Value => x moving / Y constant
       // Dismiss 0...
       if(content[x][Y] != 0) {
@@ -67,12 +67,12 @@ public class SolverAdrien implements Solver {
     return true;
   }
   @Override
-  public boolean checkLine(Grid grille, short X) {
+  public boolean checkLine(Grid grille, int X) {
     // Get grille contents
-    short[][] content = grille.getContent();
+    int[][] content = grille.getContent();
 
     // New temp list
-    Set<Short> tempNum = new HashSet<Short>();
+    Set<Integer> tempNum = new HashSet<Integer>();
 
     // Loop on Col ( 0 => 8)
     for (int y = 0; y < 9; y++) {
@@ -87,15 +87,15 @@ public class SolverAdrien implements Solver {
     return true;
   }
   @Override
-  public boolean checkSector(Grid grille, short x, short y) {
+  public boolean checkSector(Grid grille, int x, int y) {
     // Get grille contents
-    short[][] content = grille.getContent();
+    int[][] content = grille.getContent();
     // New temp list
-    Set<Short> tempNum = new HashSet<Short>();
+    Set<Integer> tempNum = new HashSet<Integer>();
 
     // Determine offset in order to find the right sector coordinates
-    short xOffset = (short)((x/3) * 3);
-    short yOffset = (short)((y/3) * 3);
+    int xOffset = (int)((x/3) * 3);
+    int yOffset = (int)((y/3) * 3);
 
     // Double loop on row and columns
     for ( x = xOffset; x < 3 + xOffset; x++) {
@@ -111,10 +111,10 @@ public class SolverAdrien implements Solver {
     return true;
   }
 
-  public Set<Short> getPossibilities(Grid grille, short x, short y) {
-    Set<Short> values = new HashSet<Short>();
+  public Set<Integer> getPossibilities(Grid grille, int x, int y) {
+    Set<Integer> values = new HashSet<Integer>();
 
-    for ( short i = 1; i < 9 ; i++) {
+    for ( int i = 1; i < 9 ; i++) {
       Grid gridtest = setCell(grille, x, y, i);
       if(checkCol(gridtest,y) && checkLine(gridtest,x) && checkSector(gridtest,x,y)){
         values.add(i);
@@ -125,12 +125,12 @@ public class SolverAdrien implements Solver {
   }
 
   public boolean getBestPossibilities(Grid grille) {
-    short[][] content = grille.getContent();
+    int[][] content = grille.getContent();
 
     List<Probabilites> probabilites = new ArrayList<Probabilites>();
 
-    for ( short x = 0; x < 9 ; x++) {
-      for ( short y = 0; y < 9 ; y++) {
+    for ( int x = 0; x < 9 ; x++) {
+      for ( int y = 0; y < 9 ; y++) {
         if(content[x][y] == 0){
           Probabilites proba = new Probabilites(x , y , getPossibilities(grille, x, y) );
           probabilites.add(proba);

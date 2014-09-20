@@ -17,43 +17,43 @@ public class SolverTest {
 
   @Test
   public void testSetLine() {
-    Grid newGrid = solver.setCell(RefGrids.AL_ESCARGOT, (short) 1, (short) 0, (short) 1);
-    assertEquals(newGrid.getVal((short) 1, (short) 0), 1);
+    Grid newGrid = solver.setCell(RefGrids.AL_ESCARGOT, 1, 0, 1);
+    assertEquals(newGrid.getVal(1, 0), 1);
     assertNotSame(RefGrids.AL_ESCARGOT,newGrid);
     assertNotSame(RefGrids.AL_ESCARGOT.getContent()[0], newGrid.getContent()[0]);
   }
 
   @Test
   public void testCheckCol() {
-    Grid gridOK = solver.setCell(RefGrids.AL_ESCARGOT, (short) 0, (short) 1, (short) 2);
-    assertTrue("Check Colonne OK",solver.checkCol(gridOK, (short) 0));
-    Grid gridKO = solver.setCell(RefGrids.AL_ESCARGOT, (short) 0, (short) 1, (short) 1);
-    assertFalse("Check Colonne NOK",solver.checkCol(gridKO, (short) 0));
+    Grid gridOK = solver.setCell(RefGrids.AL_ESCARGOT, 0, 1, 2);
+    assertTrue("Check Colonne OK",solver.checkCol(gridOK, 0));
+    Grid gridKO = solver.setCell(RefGrids.AL_ESCARGOT, 0, 1, 1);
+    assertFalse("Check Colonne NOK",solver.checkCol(gridKO, 0));
   }
 
   @Test
   public void testCheckLine() {
-    Grid gridOK = solver.setCell(RefGrids.AL_ESCARGOT, (short) 1, (short) 0, (short) 2);
-    assertTrue(solver.checkLine(gridOK, (short) 0));
-    Grid gridKO = solver.setCell(RefGrids.AL_ESCARGOT, (short) 1, (short) 0, (short) 1);
-    assertFalse(solver.checkLine(gridKO, (short) 0));
+    Grid gridOK = solver.setCell(RefGrids.AL_ESCARGOT, 1, 0, 2);
+    assertTrue(solver.checkLine(gridOK, 0));
+    Grid gridKO = solver.setCell(RefGrids.AL_ESCARGOT, 1, 0, 1);
+    assertFalse(solver.checkLine(gridKO, 0));
   }
 
   @Test
   public void testCheckSector() {
-    Grid gridOK = solver.setCell(RefGrids.AL_ESCARGOT, (short) 1, (short) 0, (short) 2);
-    assertTrue(solver.checkSector(gridOK, (short) 0, (short) 0));
-    Grid gridKO = solver.setCell(RefGrids.AL_ESCARGOT, (short) 1, (short) 0, (short) 9);
-    assertFalse(solver.checkSector(gridKO, (short) 0, (short) 0));
+    Grid gridOK = solver.setCell(RefGrids.AL_ESCARGOT, 1, 0, 2);
+    assertTrue(solver.checkSector(gridOK, 0, 0));
+    Grid gridKO = solver.setCell(RefGrids.AL_ESCARGOT, 1, 0, 9);
+    assertFalse(solver.checkSector(gridKO, 0, 0));
 
     Grid gridTest;
-    gridTest = solver.setCell(RefGrids.AL_ESCARGOT, (short) 1, (short) 6, (short) 5);
-    gridTest = solver.setCell(gridTest, (short) 2, (short) 6, (short) 8);
-    gridTest = solver.setCell(gridTest, (short) 0, (short) 7, (short) 9);
-    gridTest = solver.setCell(gridTest, (short) 2, (short) 7, (short) 1);
-    gridTest = solver.setCell(gridTest, (short) 0, (short) 8, (short) 8);
-    gridTest = solver.setCell(gridTest, (short) 1, (short) 8, (short) 9);
-    assertFalse(solver.checkSector(gridTest, (short) 0, (short) 6));
+    gridTest = solver.setCell(RefGrids.AL_ESCARGOT, 1, 6, 5);
+    gridTest = solver.setCell(gridTest, 2, 6, 8);
+    gridTest = solver.setCell(gridTest, 0, 7, 9);
+    gridTest = solver.setCell(gridTest, 2, 7, 1);
+    gridTest = solver.setCell(gridTest, 0, 8, 8);
+    gridTest = solver.setCell(gridTest, 1, 8, 9);
+    assertFalse(solver.checkSector(gridTest, 0, 6));
   }
 
   @Test

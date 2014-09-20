@@ -10,7 +10,7 @@ public class SolverBrutForce implements Solver {
   private int[] existingVals = new int[9];
 
   @Override
-  public Grid setCell(Grid grid, short x, short y, short val) {
+  public Grid setCell(Grid grid, int x, int y, int val) {
     if (!(grid.getContent()[y][x] == 0)) {
       throw new IllegalArgumentException("Can't set a cell that is already filled");
     }
@@ -20,13 +20,13 @@ public class SolverBrutForce implements Solver {
   }
 
   @Override
-  public boolean checkCol(Grid grid, short x) {
-    for (short i = 0; i < 9; i++) {
+  public boolean checkCol(Grid grid, int x) {
+    for (int i = 0; i < 9; i++) {
       // No need to test empty cell
       if (grid.getVal(x, i) == 0) {
         continue;
       }
-      for (short j = 0; j < i; j++) {
+      for (int j = 0; j < i; j++) {
         if (grid.getVal(x, i) == grid.getVal(x, j)) {
           return false;
         }
@@ -36,13 +36,13 @@ public class SolverBrutForce implements Solver {
   }
 
   @Override
-  public boolean checkLine(Grid grid, short y) {
-    for (short i = 0; i < 9; i++) {
+  public boolean checkLine(Grid grid, int y) {
+    for (int i = 0; i < 9; i++) {
       // No need to test empty cell
       if (grid.getVal(i, y) == 0) {
         continue;
       }
-      for (short j = 0; j < i; j++) {
+      for (int j = 0; j < i; j++) {
         if (grid.getVal(i, y) == grid.getVal(j, y)) {
           return false;
         }
@@ -52,12 +52,12 @@ public class SolverBrutForce implements Solver {
   }
 
   @Override
-  public boolean checkSector(Grid grid, short x, short y) {
+  public boolean checkSector(Grid grid, int x, int y) {
 
     for (int i = (x / 3) * 3; i < ((x / 3) + 1) * 3; i++) {
       for (int j = (y / 3) * 3; j < ((y / 3) + 1) * 3; j++) {
         // No need to test empty cell
-        if (grid.getVal((short) i, (short) j) == 0) {
+        if (grid.getVal(i, j) == 0) {
           continue;
         }
         TestVals:
@@ -66,7 +66,7 @@ public class SolverBrutForce implements Solver {
       if (i == k && j == l) {
         continue TestVals;
       }
-      if (grid.getVal((short) i, (short) j) == grid.getVal((short) k, (short) l)) {
+      if (grid.getVal(i, j) == grid.getVal(k, l)) {
         return false;
       }
     }
@@ -92,12 +92,12 @@ public Grid solveRecursive(Grid grid, int idx) throws IllegalGridException {
     }
     int x = idx % 9;
     int y = idx / 9;
-    if (grid.getVal((short) x, (short) y) != 0) {
+    if (grid.getVal(x, y) != 0) {
       return solveRecursive(grid, idx + 1);
     }
     for (int i = 1; i < 10; i++) {
-      Grid nextGrid = setCell(grid, (short) x, (short) y, (short) i);
-      if (!(checkCol(nextGrid, (short) x) && checkLine(nextGrid, (short) y) && checkSector(nextGrid, (short) x, (short) y))) {
+      Grid nextGrid = setCell(grid, x, y, i);
+      if (!(checkCol(nextGrid, x) && checkLine(nextGrid, y) && checkSector(nextGrid, x, y))) {
         continue;
       }
       try {
