@@ -1,7 +1,7 @@
 package sudoku.solver.exception;
 
 /**
- * Created by Sylvain on 18/09/2014.
+ * Exception thrown by a Solver when a grid has no solution
  */
 public class IllegalGridException extends Exception {
 }
