@@ -14,7 +14,7 @@ SpeedTests results
 __Results computed on an Asus c200 4Go / 32 Go chromebook with Ubuntu Trusty__
  *  `BrutForceRecursiveSolver.java` [avg 200ms] 
     This solver use brut force strategy over an immutable grid that is cloned over recursive iteration. Each non ending trees rolls back in a recursive way by throwing Exceptions. 
- *  `CleverSolver.java` [300ms] 
+ *  `CleverSolver.java` [avg 300ms] 
     This solver behaves has human regular strategy trying to first identify cells with less possibilities.
- *  `BrutForceFlatSolver.java` [0ms]
+ *  `BrutForceFlatSolver.java` [avg *0ms*]
  *  This solver use brut force strategy with an history of Moves in order to rollback unsuccessful trees. This version is no more recursive and don't clone each Grid.
