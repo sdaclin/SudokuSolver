@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class SolverTest {
-  private Solver solver = new CleverSolver();
+  private Solver solver = new BrutForceFlatSolver();
   private Grid grid = RefGrids.EASY_GRID;
 
   @Test

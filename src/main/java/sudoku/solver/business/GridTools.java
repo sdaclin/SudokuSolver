@@ -15,7 +15,7 @@ public class GridTools {
    * @param y    ordinate of the celle to set
    * @param val  to set
    * @return a new grid with the new value
-   */
+ */
   public static Grid setCell(Grid grid, int x, int y, int val) {
     // Test very usefull for dev mode but can be desactivated
     if (!(grid.getContent()[y][x] == 0)) {
@@ -111,6 +111,7 @@ public class GridTools {
    * . . . . . . . . .
    * . . . . . . . . .
    * . 3 . . 4 . . 5 .
+   * . . . . . . . . .
    * . . . . . . . . .
    * . 6 . . 7 . . 8 .
    * . . . . . . . . .

@@ -14,7 +14,15 @@ public class SpeedTest {
     // Iteration number to make an average measure
     int iter = 50;
 
-    testOverRefGrids(new BrutForceSolver(), iter);
+    testOverRefGrids(new BrutForceRecursiveSolver(), iter);
+  }
+
+  @Test
+  public void speedTestBrutForceFlatSolver() throws IllegalGridException {
+    // Iteration number to make an average measure
+    int iter = 50;
+
+    testOverRefGrids(new BrutForceFlatSolver(), iter);
   }
 
   @Test
