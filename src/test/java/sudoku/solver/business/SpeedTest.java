@@ -33,6 +33,14 @@ public class SpeedTest {
     testOverRefGrids(new CleverSolver(), iter);
   }
 
+    @Test
+  public void speedTestCellByCellsolver() throws IllegalGridException {
+    // Iteration number to make an average measure
+    int iter = 50;
+
+    testOverRefGrids(new CellByCellRecursiveSolver(), iter);
+  }
+
   private void testOverRefGrids(Solver solver, int iter) throws IllegalGridException {
     System.out.println("["+solver.getClass().getName()+"]");
 
