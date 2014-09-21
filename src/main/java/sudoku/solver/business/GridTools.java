@@ -17,6 +17,7 @@ public class GridTools {
    * @return a new grid with the new value
    */
   public static Grid setCell(Grid grid, int x, int y, int val) {
+    // Test very usefull for dev mode but can be desactivated
     if (!(grid.getContent()[y][x] == 0)) {
       throw new IllegalArgumentException("Can't set a cell that is already filled");
     }
@@ -99,5 +100,26 @@ public class GridTools {
       }
     }
     return true;
+  }
+
+  /**
+   * Return a sector Id for the coordinates
+   *
+   * Sector represenation :
+   * . . . . . . . . .
+   * . 0 . . 1 . . 2 .
+   * . . . . . . . . .
+   * . . . . . . . . .
+   * . 3 . . 4 . . 5 .
+   * . . . . . . . . .
+   * . 6 . . 7 . . 8 .
+   * . . . . . . . . .
+   *
+   * @param x ordinal
+   * @param y abscissa
+   * @return the sector id
+   */
+  public static int getSector(int x, int y) {
+    return (x / 3) + (y / 3) * 3;
   }
 }
