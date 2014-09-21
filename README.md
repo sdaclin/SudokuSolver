@@ -18,3 +18,5 @@ __Results computed on an Asus c200 4Go / 32 Go chromebook with Ubuntu Trusty__
     This solver behaves has human regular strategy trying to first identify cells with less possibilities.
  *  `BrutForceFlatSolver.java` [avg *0ms*]
  *  This solver use brut force strategy with an history of Moves in order to rollback unsuccessful trees. This version is no more recursive and don't clone each Grid.
+
+Next step : use `Calpier` to perform speed tests [[https://code.google.com/p/caliper/]]
