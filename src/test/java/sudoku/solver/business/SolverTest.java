@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class SolverTest {
-  private Solver solver = new SolverBrutForce();
+  private Solver solver = new CleverSolver();
   private Grid grid = RefGrids.EASY_GRID;
 
   @Test
@@ -56,6 +56,14 @@ public class SolverTest {
     gridTest = GridTools.setCell(gridTest, 0, 8, 8);
     gridTest = GridTools.setCell(gridTest, 1, 8, 9);
     assertFalse(GridTools.checkSector(gridTest, 0, 6));
+  }
+
+  @Test
+  public void testGetSectorId(){
+    assertEquals(0,GridTools.getSector(0,0));
+    assertEquals(1,GridTools.getSector(4,1));
+    assertEquals(2,GridTools.getSector(8,2));
+    assertEquals(8,GridTools.getSector(6,7));
   }
 
   @Test

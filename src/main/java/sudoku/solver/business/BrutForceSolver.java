@@ -9,7 +9,7 @@ import sudoku.solver.model.Grid;
  * Tries are made from 1 to 9 regardless of adjacent cells.
  * Checks are made afterward to verify viability.
  */
-public class SolverBrutForce implements Solver {
+public class BrutForceSolver implements Solver {
 
   @Override
   public Grid solve(Grid grid) {
