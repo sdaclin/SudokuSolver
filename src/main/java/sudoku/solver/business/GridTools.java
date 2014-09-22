@@ -15,7 +15,7 @@ public class GridTools {
    * @param y    ordinate of the celle to set
    * @param val  to set
    * @return a new grid with the new value
- */
+   */
   public static Grid setCell(Grid grid, int x, int y, int val) {
     // Test very usefull for dev mode but can be desactivated
     if (!(grid.getContent()[y][x] == 0)) {
@@ -102,9 +102,38 @@ public class GridTools {
     return true;
   }
 
+  public static boolean checkNewValInCol(Grid grid, int x, int val) {
+    for (int i = 0; i < 9; i++) {
+      if (grid.getVal(x, i) == val) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static boolean checkNewValInLine(Grid grid, int y, int val) {
+    for (int i = 0; i < 9; i++) {
+      if (grid.getVal(i, y) == val) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static boolean checkNewValInSector(Grid grid, int x, int y, int val) {
+    for (int i = (x / 3) * 3; i < ((x / 3) + 1) * 3; i++) {
+      for (int j = (y / 3) * 3; j < ((y / 3) + 1) * 3; j++) {
+        if (grid.getVal(i, j) == val) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   /**
    * Return a sector Id for the coordinates
-   *
+   * <p/>
    * Sector represenation :
    * . . . . . . . . .
    * . 0 . . 1 . . 2 .

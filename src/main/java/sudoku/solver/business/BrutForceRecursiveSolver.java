@@ -31,10 +31,10 @@ public class BrutForceRecursiveSolver implements Solver {
       return solveRecursive(grid, idx + 1);
     }
     for (int i = 1; i < 10; i++) {
-      Grid nextGrid = GridTools.setCell(grid, x, y, i);
-      if (!(GridTools.checkCol(nextGrid, x) && GridTools.checkLine(nextGrid, y) && GridTools.checkSector(nextGrid, x, y))) {
+      if (!(GridTools.checkNewValInCol(grid, x, i) && GridTools.checkNewValInLine(grid, y, i) && GridTools.checkNewValInSector(grid, x, y, i))) {
         continue;
       }
+      Grid nextGrid = GridTools.setCell(grid, x, y, i);
       try {
         return solveRecursive(nextGrid, idx + 1);
       } catch (IllegalGridException ige) {

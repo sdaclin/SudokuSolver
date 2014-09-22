@@ -23,7 +23,7 @@ public class CleverSolver implements Solver {
       for (int x = 0; x < 9; x++) {
         for (int y = 0; y < 9; y++) {
           if (grid.getVal(x, y) != 0) {
-            incrementCounters(cols, lines, sectors, x,y, GridTools.getSector(x, y), 1);
+            incrementCounters(cols, lines, sectors, x, y, GridTools.getSector(x, y), 1);
           }
         }
       }
@@ -33,9 +33,9 @@ public class CleverSolver implements Solver {
       return grid;
     }
     // Search for the best coord to fill
-    int bestScore=0;
-    int bestX=0;
-    int bestY=0;
+    int bestScore = 0;
+    int bestX = 0;
+    int bestY = 0;
     for (int x = 0; x < 9; x++) {
       for (int y = 0; y < 9; y++) {
         if (grid.getVal(x, y) == 0) {
@@ -54,18 +54,18 @@ public class CleverSolver implements Solver {
     }
 
     // Make an assumption
-    for (int i=1;i<10;i++){
-      Grid nextGrid = GridTools.setCell(grid, bestX, bestY, i);
-      if (!(GridTools.checkCol(nextGrid, bestX) && GridTools.checkLine(nextGrid, bestY) && GridTools.checkSector(nextGrid, bestX, bestY))) {
+    for (int i = 1; i < 10; i++) {
+      if (!(GridTools.checkNewValInCol(grid, bestX, i) && GridTools.checkNewValInLine(grid, bestY, i) && GridTools.checkNewValInSector(grid, bestX, bestY, i))) {
         continue;
       }
+      Grid nextGrid = GridTools.setCell(grid, bestX, bestY, i);
       int bestSector = GridTools.getSector(bestX, bestY);
-      incrementCounters(cols, lines, sectors, bestX,bestY, bestSector, 1);
+      incrementCounters(cols, lines, sectors, bestX, bestY, bestSector, 1);
       try {
         return solveRecursive(depth++, nextGrid, cols, lines, sectors, false);
       } catch (IllegalGridException ige) {
         // fausse piste
-        incrementCounters(cols, lines, sectors, bestX,bestY, bestSector, -1);
+        incrementCounters(cols, lines, sectors, bestX, bestY, bestSector, -1);
         continue;
       }
     }

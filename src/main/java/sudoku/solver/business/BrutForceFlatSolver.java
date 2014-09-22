@@ -55,10 +55,10 @@ public class BrutForceFlatSolver implements Solver {
         skipVerifyCell=false;
       }
       for (int i = cellStartingValue; i < 10; i++) {
-        grid.getContent()[y][x]=i;
-        if (!(GridTools.checkCol(grid, x) && GridTools.checkLine(grid, y) && GridTools.checkSector(grid, x, y))) {
+        if (!(GridTools.checkNewValInCol(grid, x, i) && GridTools.checkNewValInLine(grid, y, i) && GridTools.checkNewValInSector(grid, x, y, i))) {
           continue;
         }
+        grid.getContent()[y][x]=i;
         //Memorize move
         Move move = new Move(idx,i);
         moves.add(move);

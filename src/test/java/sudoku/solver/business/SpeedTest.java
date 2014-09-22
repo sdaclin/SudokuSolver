@@ -20,7 +20,7 @@ public class SpeedTest {
   @Test
   public void speedTestBrutForceFlatSolver() throws IllegalGridException {
     // Iteration number to make an average measure
-    int iter = 50;
+    int iter = 10000;
 
     testOverRefGrids(new BrutForceFlatSolver(), iter);
   }
@@ -61,7 +61,7 @@ public class SpeedTest {
     }
     stopwatch.stop();
     System.out.println(result);
-    resultAlEscargot = stopwatch.elapsed(TimeUnit.MILLISECONDS) / iter;
+    resultAlEscargot = stopwatch.elapsed(TimeUnit.MICROSECONDS) / iter;
 
     // Testing Medium grid
     stopwatch.reset().start();
@@ -70,22 +70,21 @@ public class SpeedTest {
     }
     stopwatch.stop();
     System.out.println(result);
-    resultMediumGrid = stopwatch.elapsed(TimeUnit.MILLISECONDS) / iter;
+    resultMediumGrid = stopwatch.elapsed(TimeUnit.MICROSECONDS) / iter;
 
     // Testing Easy grid
-    // Testing Medium grid
     stopwatch.reset().start();
     for (int i = 0; i < iter; i++) {
       result = solver.solve(RefGrids.EASY_GRID);
     }
     stopwatch.stop();
     System.out.println(result);
-    resultEasyGrid = stopwatch.elapsed(TimeUnit.MILLISECONDS) / iter;
+    resultEasyGrid = stopwatch.elapsed(TimeUnit.MICROSECONDS) / iter;
 
-    System.out.println("Average time spend [" + (resultAlEscargot+resultMediumGrid+resultEasyGrid)/3 + "] ms. Average calculated for [" + iter + "].");
+    System.out.println("Average time spend [" + (resultAlEscargot+resultMediumGrid+resultEasyGrid)/3 + "] µs. Average calculated for [" + iter + "].");
     System.out.println("Per force results :\n" +
-        "Al Escargot\t[" + resultAlEscargot + "] ms.\n" +
-        "Medium grid\t[" + resultMediumGrid + "] ms.\n" +
-        "Easy grid\t[" + resultEasyGrid + "] ms.\n");
+        "Al Escargot\t[" + resultAlEscargot + "] µs.\n" +
+        "Medium grid\t[" + resultMediumGrid + "] µs.\n" +
+        "Easy grid\t[" + resultEasyGrid + "] µs.\n");
   }
 }
