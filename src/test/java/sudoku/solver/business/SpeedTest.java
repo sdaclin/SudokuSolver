@@ -40,6 +40,14 @@ public class SpeedTest {
     testOverRefGrids(new CellByCellRecursiveSolver(), iter);
   }
 
+  @Test
+  public void speedTestBitBackedSolver() throws IllegalGridException {
+    // Iteration number to make an average measure
+    int iter = 50;
+
+    testOverRefGrids(new BitBackedSolver(), iter);
+  }
+
   private void testOverRefGrids(Solver solver, int iter) throws IllegalGridException {
     System.out.println("["+solver.getClass().getName()+"]");
 
