@@ -20,7 +20,7 @@ public class SpeedTest {
   @Test
   public void speedTestBrutForceFlatSolver() throws IllegalGridException {
     // Iteration number to make an average measure
-    int iter = 10000;
+    int iter = 50;
 
     testOverRefGrids(new BrutForceFlatSolver(), iter);
   }
@@ -33,7 +33,6 @@ public class SpeedTest {
     testOverRefGrids(new CleverSolver(), iter);
   }
 
-    @Test
   public void speedTestCellByCellsolver() throws IllegalGridException {
     // Iteration number to make an average measure
     int iter = 50;
@@ -46,7 +45,7 @@ public class SpeedTest {
 
     // Warm up : perform 5 resolutions of Al_ESCARGOT
     for (int i = 0; i < 5; i++) {
-      solver.solve(RefGrids.AL_ESCARGOT);
+      solver.solve(RefGrids.AL_ESCARGOT.clone());
     }
 
     // Performing speed test
@@ -57,7 +56,7 @@ public class SpeedTest {
     // Testing Al Escargot
     stopwatch.start();
     for (int i = 0; i < iter; i++) {
-      result = solver.solve(RefGrids.AL_ESCARGOT);
+      result = solver.solve(RefGrids.AL_ESCARGOT.clone());
     }
     stopwatch.stop();
     System.out.println(result);
@@ -66,7 +65,7 @@ public class SpeedTest {
     // Testing Medium grid
     stopwatch.reset().start();
     for (int i = 0; i < iter; i++) {
-      result = solver.solve(RefGrids.MEDIUM_GRID);
+      result = solver.solve(RefGrids.MEDIUM_GRID.clone());
     }
     stopwatch.stop();
     System.out.println(result);
@@ -75,7 +74,7 @@ public class SpeedTest {
     // Testing Easy grid
     stopwatch.reset().start();
     for (int i = 0; i < iter; i++) {
-      result = solver.solve(RefGrids.EASY_GRID);
+      result = solver.solve(RefGrids.EASY_GRID.clone());
     }
     stopwatch.stop();
     System.out.println(result);

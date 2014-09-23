@@ -16,8 +16,6 @@ public class BrutForceFlatSolver implements Solver {
 
   public class Move {
     private int idx;
-    private int x;
-    private int y;
     private int val;
 
     public Move(int idx, int val) {
@@ -47,12 +45,14 @@ public class BrutForceFlatSolver implements Solver {
       int x = idx % 9;
       int y = idx / 9;
       // Is it an empty cell ?
-      if (!skipVerifyCell && grid.getVal(x, y) != 0) {
-        // Cell is not empty => continue
-        idx++;
-        continue;
-      }else{
+      if (skipVerifyCell){
         skipVerifyCell=false;
+      }else{
+        if (grid.getVal(x, y) != 0) {
+          // Cell is not empty => continue
+          idx++;
+          continue;
+        }
       }
       for (int i = cellStartingValue; i < 10; i++) {
         if (!(GridTools.checkNewValInCol(grid, x, i) && GridTools.checkNewValInLine(grid, y, i) && GridTools.checkNewValInSector(grid, x, y, i))) {
@@ -60,8 +60,7 @@ public class BrutForceFlatSolver implements Solver {
         }
         grid.getContent()[y][x]=i;
         //Memorize move
-        Move move = new Move(idx,i);
-        moves.add(move);
+        moves.add(new Move(idx,i));
         // Continue to next idx
         idx++;
         cellStartingValue=1;
