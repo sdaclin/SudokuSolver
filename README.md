@@ -17,6 +17,6 @@ __Results computed on HP DV6 Core i5 4Go with Win7__
  *  `CleverSolver.java` [avg 18,5423.00µs] 
     This solver behaves has human regular strategy trying to first identify cells with less possibilities.
  *  `BrutForceFlatSolver.java` [avg 1,926.00µs]
- *  This solver use brut force strategy with an history of Moves in order to rollback unsuccessful trees. This version is no more recursive and don't clone each Grid.
+    This solver use brut force strategy with an history of Moves in order to rollback unsuccessful trees. This version is no more recursive and don't clone each Grid.
 
 Next step : use [Caliper](https://code.google.com/p/caliper/) to perform speed tests.
