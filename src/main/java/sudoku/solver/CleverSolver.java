@@ -1,7 +1,8 @@
-package sudoku.solver.business;
+package sudoku.solver;
 
-import sudoku.solver.exception.IllegalGridException;
-import sudoku.solver.model.Grid;
+import sudoku.exception.IllegalGridException;
+import sudoku.model.Grid;
+import sudoku.tools.GridTools;
 
 /**
  * An implementation of a Solver that memorize lines, cell and sectors with fewer possibilities
@@ -16,7 +17,7 @@ public class CleverSolver implements Solver {
     }
   }
 
-  public Grid solveRecursive(long depth, Grid grid, int[] cols, int[] lines, int sectors[], boolean init) throws IllegalGridException {
+  private Grid solveRecursive(long depth, Grid grid, int[] cols, int[] lines, int sectors[], boolean init) throws IllegalGridException {
     //System.out.println(depth);
     // Initializing filling arrays
     if (init) {

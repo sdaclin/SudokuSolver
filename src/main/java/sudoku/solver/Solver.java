@@ -1,7 +1,7 @@
-package sudoku.solver.business;
+package sudoku.solver;
 
-import sudoku.solver.exception.IllegalGridException;
-import sudoku.solver.model.Grid;
+import sudoku.exception.IllegalGridException;
+import sudoku.model.Grid;
 
 /**
  * Interface for a Sudoku Solver

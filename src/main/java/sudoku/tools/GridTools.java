@@ -1,6 +1,6 @@
-package sudoku.solver.business;
+package sudoku.tools;
 
-import sudoku.solver.model.Grid;
+import sudoku.model.Grid;
 
 /**
  * Some common tools to use over a Sudoku Grid

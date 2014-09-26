@@ -1,4 +1,4 @@
-package sudoku.solver.exception;
+package sudoku.exception;
 
 /**
  * Exception thrown by a Solver when a grid has no solution

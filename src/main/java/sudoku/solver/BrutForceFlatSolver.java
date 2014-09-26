@@ -1,6 +1,7 @@
-package sudoku.solver.business;
+package sudoku.solver;
 
-import sudoku.solver.model.Grid;
+import sudoku.model.Grid;
+import sudoku.tools.GridTools;
 
 import java.util.LinkedList;
 

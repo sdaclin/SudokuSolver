@@ -1,7 +1,8 @@
-package sudoku.solver.business;
+package sudoku.solver;
 
-import sudoku.solver.exception.IllegalGridException;
-import sudoku.solver.model.Grid;
+import sudoku.exception.IllegalGridException;
+import sudoku.model.Grid;
+import sudoku.tools.GridTools;
 
 /**
  * An implementation of a Solver that makes recursive brut force tries from every empty cell found from coord(0,0) to coord(8,8)
@@ -20,7 +21,7 @@ public class BrutForceRecursiveSolver implements Solver {
     }
   }
 
-  public Grid solveRecursive(Grid grid, int idx) throws IllegalGridException {
+  private Grid solveRecursive(Grid grid, int idx) throws IllegalGridException {
     //System.out.println(grid);
     if (idx == 81) {
       return grid;

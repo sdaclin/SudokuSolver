@@ -1,24 +1,19 @@
-package sudoku.solver.business;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+package sudoku.tools;
 
 import org.junit.Before;
 import org.junit.Test;
+import sudoku.RefGridsFactory;
+import sudoku.model.Grid;
 
-import sudoku.solver.exception.IllegalGridException;
-import sudoku.solver.model.Grid;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class SolverTest {
-  private Solver solver = new BitBackedSolver();
+public class GridToolsTest {
   private Grid grid;
-  
+
   @Before
   public void init() {
-	  grid = RefGrids.AL_ESCARGOT.clone();
+    grid = RefGridsFactory.get(RefGridsFactory.Name.AL_ESCARGOT);
   }
 
   @Test
@@ -74,26 +69,5 @@ public class SolverTest {
     assertEquals(1,GridTools.getSector(4,1));
     assertEquals(2,GridTools.getSector(8,2));
     assertEquals(8,GridTools.getSector(6,7));
-  }
-
-  @Test
-  public void testSolve() {
-    Grid result;
-    try {
-      result = solver.solve(grid);
-    } catch (IllegalGridException ige) {
-      fail("Even if Al escargot is tough, it definitely has a solution :)");
-      return;
-    }
-    for (short i = 0; i < 9; i++) {
-      assertTrue(GridTools.checkCol(result, i));
-      assertTrue(GridTools.checkLine(result, i));
-      for (short j = 0; j < 9; j++) {
-        assertFalse(result.getVal(i, j) == 0);
-        assertTrue(GridTools.checkSector(result, i, j));
-
-      }
-    }
-    System.out.println(result);
   }
 }

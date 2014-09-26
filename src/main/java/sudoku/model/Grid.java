@@ -1,4 +1,4 @@
-package sudoku.solver.model;
+package sudoku.model;
 
 import java.util.Arrays;
 
