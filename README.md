@@ -25,6 +25,7 @@ OpenJDK JMH Microbenchmark FWK SpeedTests results
 ----------------------
 __Results computed on HP DV6 Core i5 4Go with Win7__
 ```
+Benchmark                                            (gridsToTest)  Mode  Samples    Score  Score error  Units
 s.j.SolverBenchmarks.bitBackedSolverBenchmark          AL_ESCARGOT  avgt        5    1,725        0,108  ms/op
 s.j.SolverBenchmarks.bitBackedSolverBenchmark          MEDIUM_GRID  avgt        5    1,042        0,035  ms/op
 s.j.SolverBenchmarks.bitBackedSolverBenchmark            EASY_GRID  avgt        5    0,034        0,001  ms/op
